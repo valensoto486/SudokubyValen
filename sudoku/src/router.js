@@ -5,12 +5,14 @@ import Stats from './pages/Stats';
 import Profile from './pages/Profile';
 import HowToPlay from './pages/HowToPlay';
 import Settings from './pages/Settings';
+import InicialScreen from './components/inicialScreen'; 
 
 export default function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<InicialScreen />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/how-to-play" element={<HowToPlay />} />
