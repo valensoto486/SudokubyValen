@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Router from './router';
+import React from "react"
+import ReactDOM from "react-dom/client"
+import AppRouter from "./router"
+import "./App.css" 
 
-export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-}
+const root = ReactDOM.createRoot(document.getElementById("root"))
+root.render(
+  <React.StrictMode>
+    <AppRouter />
+  </React.StrictMode>
+)
 
