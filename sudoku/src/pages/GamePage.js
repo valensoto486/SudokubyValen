@@ -1,3 +1,8 @@
+//** Pagina Juego clasico o experto */
+// Muestra el tablero de juego con las reglas y controles
+// Permite al usuario jugar y ver sus estadísticas
+// Permite al usuario reiniciar el juego y volver a la página de inicio
+
 "use client"
 
 import { useState, useEffect } from "react"
