@@ -2,19 +2,16 @@
 
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import GameBoard from "@/components/game-board"
-import GameHeader from "@/components/game-header"
-import { Button } from "@/components/ui/button"
+import GameBoard from "../components/game-board"
+import GameHeader from "../components/game-header"
 import { Home, User, RotateCcw, Share } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import Header from "@/components/header"
-import BottomNavigation from "@/components/bottom-navigation"
-import { useToast } from "@/hooks/use-toast"
+import Header from "../components/Header"
+import BottomNavigation from "../components/bottom-navigation"
 
 export default function GamePage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { toast } = useToast()
   const [gameMode, setGameMode] = useState("")
   const [gameDifficulty, setGameDifficulty] = useState("")
   const [lives, setLives] = useState(4)
@@ -80,10 +77,8 @@ export default function GamePage() {
         localStorage.setItem("bestTimeOverall", time.toString())
       }
 
-      toast({
-        title: "¡Nuevo récord!",
-        description: `Has establecido un nuevo mejor tiempo: ${formatTime(time)}`,
-      })
+      // Show alert instead of toast
+      alert(`¡Nuevo récord! Has establecido un nuevo mejor tiempo: ${formatTime(time)}`)
     }
 
     // Update games won count
@@ -140,10 +135,7 @@ export default function GamePage() {
     } else {
       // Fallback para navegadores que no soportan Web Share API
       navigator.clipboard.writeText(text).then(() => {
-        toast({
-          title: "¡Copiado al portapapeles!",
-          description: "Puedes pegar el texto para compartir tu resultado.",
-        })
+        alert("¡Copiado al portapapeles! Puedes pegar el texto para compartir tu resultado.")
       })
     }
   }
@@ -162,12 +154,18 @@ export default function GamePage() {
         <GameHeader gameMode={gameMode} gameDifficulty={gameDifficulty} lives={lives} time={time} />
 
         <div className="flex justify-between w-full max-w-md mx-auto mb-4">
-          <Button variant="outline" size="icon" onClick={handleGoHome}>
+          <button 
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 w-10"
+            onClick={handleGoHome}
+          >
             <Home className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="icon" onClick={handleGoToProfile}>
+          </button>
+          <button 
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 w-10"
+            onClick={handleGoToProfile}
+          >
             <User className="h-4 w-4" />
-          </Button>
+          </button>
         </div>
 
         <AnimatePresence mode="wait">
@@ -191,14 +189,20 @@ export default function GamePage() {
               <p className="text-muted-foreground">Tiempo: {formatTime(time)}</p>
 
               <div className="flex gap-4 justify-center mt-6">
-                <Button onClick={handleRestartGame} className="gap-2">
+                <button 
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2"
+                  onClick={handleRestartGame}
+                >
                   <RotateCcw className="h-4 w-4" />
                   Reintentar
-                </Button>
-                <Button variant="outline" onClick={handleGoHome} className="gap-2">
+                </button>
+                <button 
+                  className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2"
+                  onClick={handleGoHome}
+                >
                   <Home className="h-4 w-4" />
                   Inicio
-                </Button>
+                </button>
               </div>
             </motion.div>
           ) : isGameWon ? (
@@ -254,18 +258,27 @@ export default function GamePage() {
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center mt-6">
-                <Button onClick={handleRestartGame} className="gap-2">
+                <button 
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2"
+                  onClick={handleRestartGame}
+                >
                   <RotateCcw className="h-4 w-4" />
                   Jugar de nuevo
-                </Button>
-                <Button variant="outline" onClick={handleGoHome} className="gap-2">
+                </button>
+                <button 
+                  className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2"
+                  onClick={handleGoHome}
+                >
                   <Home className="h-4 w-4" />
                   Inicio
-                </Button>
-                <Button variant="secondary" onClick={handleShareResult} className="gap-2">
+                </button>
+                <button 
+                  className="inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground ring-offset-background transition-colors hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 gap-2"
+                  onClick={handleShareResult}
+                >
                   <Share className="h-4 w-4" />
                   Compartir
-                </Button>
+                </button>
               </div>
             </motion.div>
           ) : (
