@@ -1,3 +1,7 @@
+//** Componente utilizado en el NavBar */
+// Componente BottomNavigation para la barra de navegación inferior
+// Permite navegar entre las diferentes páginas de la aplicación
+
 "use client"
 
 import { useNavigate } from 'react-router-dom'

@@ -1,3 +1,7 @@
+//** Componente mostrado en todas las paginas */
+// Componente de encabezado
+// Muestra el título de la página actual
+
 "use client"
 
 import { motion } from "framer-motion"

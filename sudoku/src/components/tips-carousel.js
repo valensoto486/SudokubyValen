@@ -1,3 +1,7 @@
+//** Componente mostrado en el Home */
+// Componente que muestra un tipo Carousel de tips para el juego de Sudoku.
+// Se puede pausar el carrusel al pasar el mouse por encima y se reanuda al salir.
+
 "use client"
 
 import { useState, useEffect, useRef } from "react"

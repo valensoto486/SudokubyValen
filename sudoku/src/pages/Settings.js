@@ -1,3 +1,8 @@
+//** Pagina Configuración */
+// Permite al usuario cambiar el tema de la aplicación entre claro y neón. 
+// El tema se guarda en el LocalStorage para que el usuario pueda continuar jugando desde donde lo dejó. 
+
+
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 

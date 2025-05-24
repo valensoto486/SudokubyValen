@@ -1,3 +1,7 @@
+//** Pagina Estadísticas */
+// Muestra las estadísticas del usuario 
+// como partidas jugadas, ganadas, perdidas y mejor tiempo.
+
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 

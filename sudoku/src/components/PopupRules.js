@@ -1,3 +1,7 @@
+// Pop up mostrado al ingresar a la aplicación, 
+// despues del logo y antes de la pantalla principal
+// Muestra las reglas del juego sudoku
+
 "use client"
 
 import { motion } from "framer-motion"

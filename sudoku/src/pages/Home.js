@@ -1,3 +1,8 @@
+//** Pagina Inicial/Home*/
+// Pagina principal de la aplicación
+// Muestra el logo de la aplicación y permite navegar a otras páginas
+// Permite al usuario seleccionar el modo de juego y ver sus estadísticas
+
 "use client"
 
 import { useState, useEffect } from "react"

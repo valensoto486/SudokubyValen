@@ -1,3 +1,9 @@
+//** Componente mostrado en el Home */
+// El componente ModeSelection permite al usuario seleccionar el modo de juego.
+// El modo de juego determina la dificultad del juego y la cantidad de celdas vacías iniciales.
+// El modo de juego también afecta la puntuación final del jugador.
+// El modo de juego se guarda en el LocalStorage para que el usuario pueda continuar jugando desde donde lo dejó.
+
 "use client"
 
 import { useNavigate } from 'react-router-dom'
@@ -8,9 +14,9 @@ export default function ModeSelection() {
   const router = useNavigate()
 
   const handleModeSelection = (mode) => {
-    // Save selected mode to localStorage
+    // Guarda la seleccion del juego en el LocalStorage
     localStorage.setItem("gameMode", mode)
-    // Navigate to difficulty selection
+    // Nivel de dificultad del juego
     router.push(`/difficulty?mode=${mode}`)
   }
 

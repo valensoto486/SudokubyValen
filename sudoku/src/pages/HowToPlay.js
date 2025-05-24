@@ -1,3 +1,7 @@
+//** Pagina ¿Cómo jugar? */
+// Muestra las reglas del juego de Sudoku.
+// Permite al usuario entender cómo jugar y qué reglas seguir.
+
 import React from 'react';
 import NavBar from '../components/NavBar';
 

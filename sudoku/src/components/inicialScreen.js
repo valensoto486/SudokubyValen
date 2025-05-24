@@ -1,3 +1,7 @@
+// Pagina de animación mostrando el logo y el nombre de la aplicación
+// Se muestra al iniciar la aplicación
+// Se puede navegar a la página de inicio presionando cualquier tecla
+
 "use client"
 
 import { useEffect, useState } from "react"

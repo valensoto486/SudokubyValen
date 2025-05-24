@@ -1,3 +1,7 @@
+//** Componente mostrado en todas las paginas */
+// Menu inferior de navegación
+// Permite navegar entre las diferentes páginas de la aplicación
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

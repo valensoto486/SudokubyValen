@@ -1,3 +1,7 @@
+//** Pagina Perfil del usuario */
+// Permite al usuario cambiar su nombre de usuario.
+// El nombre de usuario se guarda en el LocalStorage 
+
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 
