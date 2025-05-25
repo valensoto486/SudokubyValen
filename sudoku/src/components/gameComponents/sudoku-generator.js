@@ -163,44 +163,32 @@ export function generateSudoku(difficulty) {
 
 // Generar un Sudoku con regiones irregulares para el modo experto
 export function generateIrregularSudoku(difficulty) {
-  try {
-    // Generar regiones irregulares
-    const regions = generateIrregularRegions()
+  // Generar regiones irregulares
+  const regions = generateIrregularRegions()
 
-    // Generar un tablero resuelto con las regiones irregulares
-    const solution = generateSolvedBoardWithRegions(regions)
+  // Generar un tablero resuelto con las regiones irregulares
+  const solution = generateSolvedBoardWithRegions(regions)
 
-    if (!solution) {
-      throw new Error('No se pudo generar un tablero válido')
+  // Crear una copia para el puzzle
+  const puzzle = solution.map((row) => [...row])
+
+  // Calcular cuántas celdas eliminar según la dificultad
+  // Para el modo experto, hacemos que sea un poco más difícil
+  const cellsToRemove = Math.floor(difficulty * 45) + 25 // Entre 25 y 70 celdas
+
+  // Eliminar celdas aleatoriamente
+  let removed = 0
+  while (removed < cellsToRemove) {
+    const row = Math.floor(Math.random() * 9)
+    const col = Math.floor(Math.random() * 9)
+
+    if (puzzle[row][col] !== 0) {
+      puzzle[row][col] = 0
+      removed++
     }
-
-    // Crear una copia para el puzzle
-    const puzzle = solution.map((row) => [...row])
-
-    // Calcular cuántas celdas eliminar según la dificultad
-    // Para el modo experto, hacemos que sea un poco más difícil
-    const cellsToRemove = Math.floor(difficulty * 45) + 25 // Entre 25 y 70 celdas
-
-    // Eliminar celdas aleatoriamente
-    let removed = 0
-    let maxAttempts = cellsToRemove * 2 // Dar suficientes intentos para eliminar celdas
-    while (removed < cellsToRemove && maxAttempts > 0) {
-      const row = Math.floor(Math.random() * 9)
-      const col = Math.floor(Math.random() * 9)
-
-      if (puzzle[row][col] !== 0) {
-        puzzle[row][col] = 0
-        removed++
-      }
-      maxAttempts--
-    }
-
-    return { puzzle, solution, regions }
-  } catch (error) {
-    console.error('Error generando el Sudoku irregular:', error)
-    // Reintentar una vez más si falla
-    return generateIrregularSudoku(difficulty)
   }
+
+  return { puzzle, solution, regions }
 }
 
 // Generar regiones irregulares para el modo experto
@@ -320,10 +308,7 @@ function generateSolvedBoardWithRegions(regions) {
 }
 
 // Resolver el tablero de Sudoku con regiones irregulares
-function solveSudokuWithRegions(board, regions, attempts = 0) {
-  // Limitar el número de intentos para evitar bucles infinitos
-  if (attempts > 1000) return false
-
+function solveSudokuWithRegions(board, regions) {
   // Encontrar una celda vacía
   const emptyCell = findEmptyCell(board)
 
@@ -343,7 +328,7 @@ function solveSudokuWithRegions(board, regions, attempts = 0) {
       board[row][col] = num
 
       // Intentar resolver recursivamente el resto del tablero
-      if (solveSudokuWithRegions(board, regions, attempts + 1)) {
+      if (solveSudokuWithRegions(board, regions)) {
         return true
       }
 
