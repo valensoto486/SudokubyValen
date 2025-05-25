@@ -4,20 +4,18 @@
 // El modo de juego también afecta la puntuación final del jugador.
 // El modo de juego se guarda en el LocalStorage para que el usuario pueda continuar jugando desde donde lo dejó.
 
-"use client"
-
 import { useNavigate } from 'react-router-dom'
 import { motion } from "framer-motion"
 import { Trophy, Brain, Sparkles } from "lucide-react"
 
 export default function ModeSelection() {
-  const router = useNavigate()
+  const navigate = useNavigate() // Cambio: usar navigate en lugar de router
 
   const handleModeSelection = (mode) => {
     // Guarda la seleccion del juego en el LocalStorage
     localStorage.setItem("gameMode", mode)
     // Nivel de dificultad del juego
-    router.push(`/difficulty?mode=${mode}`)
+    navigate(`/difficulty?mode=${mode}`) // Cambio: usar navigate() en lugar de router.push()
   }
 
   return (

@@ -3,20 +3,18 @@
 // Permite al usuario jugar y ver sus estadísticas
 // Permite al usuario reiniciar el juego y volver a la página de inicio
 
-"use client"
-
 import { useState, useEffect } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import GameBoard from "../components/game-board"
-import GameHeader from "../components/game-header"
+import { useNavigate, useLocation } from "react-router-dom" 
+import GameBoard from "../components/gameComponents/game-board"
+import GameHeader from "../components/gameComponents/game-header"
 import { Home, User, RotateCcw, Share } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Header from "../components/Header"
 import BottomNavigation from "../components/bottom-navigation"
 
 export default function GamePage() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const navigate = useNavigate() 
+  const location = useLocation() 
   const [gameMode, setGameMode] = useState("")
   const [gameDifficulty, setGameDifficulty] = useState("")
   const [lives, setLives] = useState(4)
@@ -26,6 +24,16 @@ export default function GamePage() {
   const [showConfetti, setShowConfetti] = useState(false)
 
   useEffect(() => {
+    // Función para obtener parámetros de URL en React Router
+    const getSearchParams = () => {
+      const searchParams = new URLSearchParams(location.search)
+      return {
+        get: (key) => searchParams.get(key)
+      }
+    }
+
+    const searchParams = getSearchParams()
+    
     // Get game settings from URL or localStorage
     const mode = searchParams.get("mode") || localStorage.getItem("gameMode") || "classic"
     const difficulty = searchParams.get("difficulty") || localStorage.getItem("gameDifficulty") || "facil"
@@ -48,7 +56,7 @@ export default function GamePage() {
     localStorage.setItem("totalGamesPlayed", (totalGamesPlayed + 1).toString())
 
     return () => clearInterval(timer)
-  }, [searchParams])
+  }, [location.search]) // Dependencia cambiada
 
   const handleLoseLife = () => {
     setLives((prevLives) => {
@@ -116,11 +124,11 @@ export default function GamePage() {
   }
 
   const handleGoHome = () => {
-    router.push("/home")
+    navigate("/home") // navigate en lugar de router.push
   }
 
   const handleGoToProfile = () => {
-    router.push("/profile")
+    navigate("/profile") // navigate en lugar de router.push
   }
 
   const handleShareResult = () => {

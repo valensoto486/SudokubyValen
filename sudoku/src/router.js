@@ -6,6 +6,8 @@ import Profile from './pages/Profile';
 import HowToPlay from './pages/HowToPlay';
 import Settings from './pages/Settings';
 import InicialScreen from './components/inicialScreen'; 
+import DifficultyPage from './pages/DifficultyPage';
+import GamePage from './pages/GamePage';
 
 export default function AppRouter() {
   return (
@@ -17,6 +19,8 @@ export default function AppRouter() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/how-to-play" element={<HowToPlay />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/difficulty" element={<DifficultyPage />} />
+        <Route path="/game" element={<GamePage />} />
       </Routes>
     </Router>
   );
