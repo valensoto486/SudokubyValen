@@ -15,7 +15,7 @@ export default function AppRouter() {
       <Routes>
         <Route path="/" element={<InicialScreen />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/stats" element={<Stats />} />
+        <Route path="/statistics" element={<Stats />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/how-to-play" element={<HowToPlay />} />
         <Route path="/settings" element={<Settings />} />
