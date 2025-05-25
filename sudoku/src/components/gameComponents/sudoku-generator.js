@@ -2,19 +2,30 @@
 
 // Generar un tablero de Sudoku resuelto
 function generateSolvedBoard() {
-  // Comenzar con un tablero vacío
-  const board = Array(9)
-    .fill(0)
-    .map(() => Array(9).fill(0))
+  const maxAttempts = 5;
+  let attempts = 0;
+  
+  while (attempts < maxAttempts) {
+    // Comenzar con un tablero vacío
+    const board = Array(9)
+      .fill(0)
+      .map(() => Array(9).fill(0))
 
-  // Resolver el tablero (esto generará un tablero resuelto aleatorio)
-  solveSudoku(board)
-
-  return board
+    // Resolver el tablero (esto generará un tablero resuelto aleatorio)
+    if (solveSudoku(board)) {
+      return board
+    }
+    attempts++
+  }
+  
+  throw new Error('No se pudo generar un tablero válido después de varios intentos')
 }
 
 // Resolver el tablero de Sudoku usando backtracking
-function solveSudoku(board) {
+function solveSudoku(board, attempts = 0) {
+  // Limitar el número de intentos para evitar bucles infinitos
+  if (attempts > 1000) return false
+
   // Encontrar una celda vacía
   const emptyCell = findEmptyCell(board)
 
@@ -34,7 +45,7 @@ function solveSudoku(board) {
       board[row][col] = num
 
       // Intentar resolver recursivamente el resto del tablero
-      if (solveSudoku(board)) {
+      if (solveSudoku(board, attempts + 1)) {
         return true
       }
 
@@ -106,41 +117,48 @@ function shuffleArray(array) {
 
 // Generar un puzzle de Sudoku eliminando números de un tablero resuelto
 export function generateSudoku(difficulty) {
-  // Generar un tablero resuelto
-  const solution = generateSolvedBoard()
+  try {
+    // Generar un tablero resuelto
+    const solution = generateSolvedBoard()
 
-  // Crear una copia para el puzzle
-  const puzzle = solution.map((row) => [...row])
+    // Crear una copia para el puzzle
+    const puzzle = solution.map((row) => [...row])
 
-  // Crear regiones clásicas (subcuadros 3x3)
-  const regions = Array(9)
-    .fill(0)
-    .map(() => Array(9).fill(0))
+    // Crear regiones clásicas (subcuadros 3x3)
+    const regions = Array(9)
+      .fill(0)
+      .map(() => Array(9).fill(0))
 
-  // Asignar IDs de región para el modo clásico (subcuadros 3x3)
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      regions[row][col] = Math.floor(row / 3) * 3 + Math.floor(col / 3)
+    // Asignar IDs de región para el modo clásico (subcuadros 3x3)
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        regions[row][col] = Math.floor(row / 3) * 3 + Math.floor(col / 3)
+      }
     }
-  }
 
-  // Calcular cuántas celdas eliminar según la dificultad (0-1)
-  // Mayor dificultad significa más celdas eliminadas
-  const cellsToRemove = Math.floor(difficulty * 50) + 20 // Entre 20 y 70 celdas
+    // Calcular cuántas celdas eliminar según la dificultad (0-1)
+    const cellsToRemove = Math.floor(difficulty * 50) + 20 // Entre 20 y 70 celdas
 
-  // Eliminar celdas aleatoriamente
-  let removed = 0
-  while (removed < cellsToRemove) {
-    const row = Math.floor(Math.random() * 9)
-    const col = Math.floor(Math.random() * 9)
+    // Eliminar celdas aleatoriamente
+    let removed = 0
+    let maxAttempts = cellsToRemove * 2 // Dar suficientes intentos para eliminar celdas
+    while (removed < cellsToRemove && maxAttempts > 0) {
+      const row = Math.floor(Math.random() * 9)
+      const col = Math.floor(Math.random() * 9)
 
-    if (puzzle[row][col] !== 0) {
-      puzzle[row][col] = 0
-      removed++
+      if (puzzle[row][col] !== 0) {
+        puzzle[row][col] = 0
+        removed++
+      }
+      maxAttempts--
     }
-  }
 
-  return { puzzle, solution, regions }
+    return { puzzle, solution, regions }
+  } catch (error) {
+    console.error('Error generando el Sudoku:', error)
+    // Reintentar una vez más si falla
+    return generateSudoku(difficulty)
+  }
 }
 
 // Generar un Sudoku con regiones irregulares para el modo experto
