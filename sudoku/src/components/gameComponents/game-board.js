@@ -33,7 +33,13 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
 
     setIsLoading(true)
 
-    setTimeout(() => {
+    // Añadir un timeout para evitar que se quede cargando indefinidamente
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false)
+      showToast("Error", "El tablero tardó demasiado en generarse. Por favor, intenta de nuevo.", "destructive")
+    }, 10000) // 10 segundos máximo
+
+    try {
       if (gameMode === "classic") {
         const { puzzle, solution, regions: classicRegions } = generateSudoku(difficulty)
         setBoard(puzzle)
@@ -48,7 +54,13 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
       }
 
       setIsLoading(false)
-    }, 500)
+      clearTimeout(timeoutId)
+    } catch (error) {
+      console.error("Error generando el tablero:", error)
+      setIsLoading(false)
+      clearTimeout(timeoutId)
+      showToast("Error", "No se pudo generar el tablero. Por favor, intenta de nuevo.", "destructive")
+    }
 
     // Initialize audio elements
     audioRef.current = new Audio("/sounds/click.mp3")
@@ -56,6 +68,7 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
     successAudioRef.current = new Audio("/sounds/success.mp3")
 
     return () => {
+      clearTimeout(timeoutId)
       // Clean up audio elements
       if (audioRef.current) {
         audioRef.current.pause()
