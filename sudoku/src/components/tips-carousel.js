@@ -111,7 +111,7 @@ export default function TipsCarousel() {
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="border-2 border-primary/30 overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl bg-white">
-        <div className="relative h-56 md:h-48">
+        <div className="relative h-56 md:h-48 flex items-center justify-center">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={currentTip}
@@ -121,7 +121,7 @@ export default function TipsCarousel() {
               animate="center"
               exit="exit"
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute inset-0 p-6"
+              className="absolute inset-0 p-6 justify-center "
             >
               <div className="flex items-start gap-4">
                 <div className={`flex-shrink-0 ${tips[currentTip].color} rounded-full p-3`}>
@@ -140,7 +140,7 @@ export default function TipsCarousel() {
                   </h3>
                   <p className="text-muted-foreground">{tips[currentTip].content}</p>
 
-                  <div className="mt-4 flex justify-center">
+                  <div className="w-full flex items-center mt-6 gap-2 ml-16">
                     <motion.div
                       className="grid grid-cols-3 grid-rows-3 gap-0.5 bg-background p-1 rounded border border-border w-24 h-24"
                       initial={{ opacity: 0, y: 10 }}
@@ -200,7 +200,7 @@ export default function TipsCarousel() {
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-between items-center p-2 border-t border-border">
+        <div className="flex justify-between items-center p-2 border-t border-border mt-24">
           <button onClick={prevTip} className="hover:bg-primary/10 p-2 rounded-full">
             <ChevronLeft className="h-5 w-5" />
           </button>
