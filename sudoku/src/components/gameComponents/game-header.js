@@ -14,13 +14,13 @@ export default function GameHeader({ gameMode, gameDifficulty, lives, time }) {
   const formattedDifficulty = gameDifficulty === "facil" ? "Fácil" : gameDifficulty === "medio" ? "Medio" : "Difícil"
 
   return (
-    <div className="w-full max-w-md mx-auto mb-4">
-      <div className="p-4 border-2 border-primary/30 shadow-md rounded-lg bg-white dark:bg-gray-800">
+    <div className=" w-full max-w-md mx-auto mb-4 bg-white">
+      <div className="p-4 border-2 border-primary/30 shadow-md rounded-lg bg-white ">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-xl font-bold text-primary">Sudoku {formattedMode}</h2>
             <div className="flex gap-2 mt-1">
-              <span className="inline-flex items-center rounded-md border border-gray-200 dark:border-gray-700 bg-primary/5 px-2.5 py-0.5 text-xs font-semibold text-gray-900 dark:text-gray-100">
+              <span className="inline-flex items-center rounded-md border border-gray-200 dark:border-gray-700 bg-primary/5 px-2.5 py-0.5 text-xs font-semibold text-gray-900 dark:text-gray-700">
                 {formattedMode}
               </span>
               <span className="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-700 px-2.5 py-0.5 text-xs font-semibold text-gray-900 dark:text-gray-100">
