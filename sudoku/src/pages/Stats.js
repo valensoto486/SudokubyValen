@@ -7,6 +7,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Clock, Award, XCircle, CheckCircle, PlayCircle } from "lucide-react";
+import Header from "../components/Header";
+import BottomNavigation from "../components/bottom-navigation";
 
 export default function Stats() {
   const [stats, setStats] = useState({
@@ -98,7 +100,7 @@ export default function Stats() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="bg-white shadow p-4 text-xl font-bold text-center">Estadísticas</header>
+      <Header title="Estadisticas" />
 
       <main className="flex-1 container mx-auto px-4 py-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
