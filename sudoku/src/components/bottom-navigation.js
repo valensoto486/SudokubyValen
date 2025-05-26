@@ -28,7 +28,7 @@ export default function BottomNavigation({ currentPath }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed bottom-0 left-0 right-0 bg-background border-t border-border py-2 px-4 z-10"
+      className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-4 z-10"
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center relative">
