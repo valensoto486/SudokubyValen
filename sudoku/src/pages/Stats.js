@@ -144,9 +144,7 @@ export default function Stats() {
         </motion.div>
       </main>
 
-      <footer className="bg-white shadow p-4 text-center text-sm text-gray-500">
-        © 2025 Estadísticas del Juego
-      </footer>
+      <BottomNavigation currentPath="/statistics" />
     </div>
   );
 }
