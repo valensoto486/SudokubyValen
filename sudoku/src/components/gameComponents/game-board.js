@@ -298,11 +298,11 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
 
     if (gameMode === "classic") {
       // Para el modo clásico, alternamos colores por subcuadros 3x3
-      return (Math.floor(row / 3) + Math.floor(col / 3)) % 2 === 0 ? "bg-background" : "bg-primary/5"
+      return (Math.floor(row / 3) + Math.floor(col / 3)) % 2 === 0 ? "bg-[#dceaff]" : "bg-white"
     } else {
       // Para el modo experto, asignamos colores por ID de región
       const colors = [
-        "bg-background",
+        "bg-background ",
         "bg-blue-50 dark:bg-blue-950/30",
         "bg-purple-50 dark:bg-purple-950/30",
         "bg-green-50 dark:bg-green-950/30",
