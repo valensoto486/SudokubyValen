@@ -72,7 +72,7 @@ export default function SudokuCell({
 
   // Cell background and text styles
   const cellStyles = cn(
-    "aspect-square text-center transition-colors duration-200",
+    "aspect-square text-center transition-colors duration-200 min-w-8 min-h-8",
     backgroundColor,
     isInitial ? "font-bold text-primary" : "text-foreground",
     isSelected ? "bg-primary/20" : "",
