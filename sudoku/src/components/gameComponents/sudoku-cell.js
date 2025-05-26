@@ -1,3 +1,19 @@
+// Componente que muestra una celda del Sudoku
+// Recibe las siguientes props:
+// - id: identificador único de la celda  
+// - value: valor actual de la celda (0 si está vacía)
+// - notes: notas de la celda (array de números posibles) 
+// - isInitial: indica si la celda es parte del tablero inicial (no editable)
+// - isSelected: indica si la celda está seleccionada
+// - isNotesMode: indica si el modo de notas está activado
+// - onClick: función llamada al hacer clic en la celda
+// - onLongPress: función llamada al presionar la celda por más de 500ms
+// - rowIndex: índice de la fila de la celda
+// - colIndex: índice de la columna de la celda
+// - backgroundColor: color de fondo de la celda    
+// - borderStyle: estilo de borde de la celda
+// - regionId: identificador de la región de la celda
+
 "use client"
 
 import { useEffect, useRef } from "react"
