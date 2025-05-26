@@ -10,7 +10,7 @@ const cn = (...classes) => {
 export default function NumberPad({ onNumberClick, onClearClick, onNotesToggle, isNotesMode }) {
   return (
     <motion.div
-      className="grid grid-cols-5 gap-2"
+      className=" grid grid-cols-5 gap-2"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -23,7 +23,7 @@ export default function NumberPad({ onNumberClick, onClearClick, onNotesToggle, 
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <button
-            className="aspect-square text-xl font-bold w-full h-full border-2 rounded-md bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-colors duration-200 flex items-center justify-center"
+            className="aspect-square text-xl font-bold w-full h-full border-2 rounded-md bg-white border-gray-300 dark:border-gray-600 hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-colors duration-200 flex items-center justify-center"
             onClick={() => onNumberClick(num)}
           >
             {num}
@@ -41,7 +41,7 @@ export default function NumberPad({ onNumberClick, onClearClick, onNotesToggle, 
             "aspect-square w-full h-full border-2 rounded-md bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 transition-colors duration-200 flex items-center justify-center",
             isNotesMode
               ? "bg-primary/20 border-primary text-primary"
-              : "hover:bg-primary/10 hover:text-primary hover:border-primary/50",
+              : "hover:bg-primary/10 hover:text-primary hover:border-primary/50 text-white",
           )}
           onClick={onNotesToggle}
         >
@@ -55,7 +55,7 @@ export default function NumberPad({ onNumberClick, onClearClick, onNotesToggle, 
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
         <button
-          className="aspect-square w-full h-full border-2 rounded-md bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50 transition-colors duration-200 flex items-center justify-center"
+          className="aspect-square w-full h-full border-2 rounded-md bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50 transition-colors duration-200 flex items-center justify-center text-white"
           onClick={onClearClick}
         >
           <Eraser className="h-5 w-5" />
