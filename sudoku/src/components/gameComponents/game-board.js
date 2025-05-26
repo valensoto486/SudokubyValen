@@ -302,17 +302,18 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
     } else {
       // Para el modo experto, asignamos colores por ID de región
       const colors = [
-        "bg-background ",
-        "bg-blue-50 dark:bg-blue-950/30",
-        "bg-purple-50 dark:bg-purple-950/30",
-        "bg-green-50 dark:bg-green-950/30",
-        "bg-yellow-50 dark:bg-yellow-950/30",
-        "bg-pink-50 dark:bg-pink-950/30",
-        "bg-cyan-50 dark:bg-cyan-950/30",
-        "bg-orange-50 dark:bg-orange-950/30",
-        "bg-indigo-50 dark:bg-indigo-950/30",
-        "bg-red-50 dark:bg-red-950/30",
-      ]
+        "bg-[#f5e6ff] dark:bg-[#d580ff]/90",      // Lila neón
+        "bg-[#e0f0ff] dark:bg-[#33bfff]/90",      // Azul eléctrico
+        "bg-[#f0e8ff] dark:bg-[#b366ff]/90",      // Púrpura vivo
+        "bg-[#eaffea] dark:bg-[#39ff14]/90",      // Verde neón 
+        "bg-[#fffbe6] dark:bg-[#ffe600]/90",      // Amarillo fosforescente
+        "bg-[#ffe6f7] dark:bg-[#ff4ddb]/90",      // Rosa brillante
+        "bg-[#e6ffff] dark:bg-[#00ffe7]/90",      // Cian neón
+        "bg-[#fff0e6] dark:bg-[#ff9933]/90",      // Naranja intenso
+        "bg-[#ede6ff] dark:bg-[#9966ff]/90",      // Índigo eléctrico
+        "bg-[#ffe6e6] dark:bg-[#ff3333]/90"       // Rojo neón
+      ];
+
 
       return colors[regionId % colors.length]
     }
