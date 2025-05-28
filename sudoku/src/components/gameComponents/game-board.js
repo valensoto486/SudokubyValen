@@ -8,6 +8,35 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "../../lib/utils"
 import { X, Check } from "lucide-react"
 
+// Importaciones condicionales de Capacitor
+let Haptics;
+let Storage;
+let App;
+
+try {
+  const capacitorHaptics = require('@capacitor/haptics');
+  const capacitorStorage = require('@capacitor/storage');
+  const capacitorApp = require('@capacitor/app');
+  
+  Haptics = capacitorHaptics.Haptics;
+  Storage = capacitorStorage.Storage;
+  App = capacitorApp.App;
+} catch (error) {
+  console.log('Capacitor no está disponible en el navegador');
+  // Mock objects for web development
+  Haptics = {
+    impact: async () => {},
+  };
+  Storage = {
+    set: async () => {},
+    get: async () => ({ value: null }),
+  };
+  App = {
+    addListener: () => {},
+    removeAllListeners: () => {},
+  };
+}
+
 export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGameWon }) {
   const [board, setBoard] = useState([])
   const [initialBoard, setInitialBoard] = useState([])
@@ -32,6 +61,52 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
       setToastMessage(null)
     }, 3000)
   }
+
+  // Función para guardar el progreso del juego
+  const saveGameProgress = async () => {
+    try {
+      await Storage.set({
+        key: 'gameProgress',
+        value: JSON.stringify({
+          board,
+          notes,
+          gameMode,
+          gameDifficulty
+        })
+      });
+    } catch (error) {
+      console.error('Error al guardar el progreso:', error);
+    }
+  };
+
+  // Cargar progreso guardado
+  const loadGameProgress = async () => {
+    try {
+      const { value } = await Storage.get({ key: 'gameProgress' });
+      if (value) {
+        const progress = JSON.parse(value);
+        setBoard(progress.board);
+        setNotes(progress.notes);
+      }
+    } catch (error) {
+      console.error('Error al cargar el progreso:', error);
+    }
+  };
+
+  useEffect(() => {
+    // Cargar progreso al iniciar
+    loadGameProgress();
+
+    // Configurar el manejo del botón de retroceso (Android)
+    App.addListener('backButton', () => {
+      // Guardar progreso antes de salir
+      saveGameProgress();
+    });
+
+    return () => {
+      App.removeAllListeners();
+    };
+  }, []);
 
   useEffect(() => {
     // Generate a new Sudoku board based on mode and difficulty
@@ -80,7 +155,14 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
     }
   }, [gameMode, gameDifficulty])
 
-  const handleCellClick = (row, col) => {
+  const handleCellClick = async (row, col) => {
+    // Vibración táctil ligera al tocar una celda
+    try {
+      await Haptics.impact({ style: 'light' });
+    } catch (error) {
+      console.error('Error con la vibración:', error);
+    }
+
     // Easter egg: detectar clicks en la celda central (4,4)
     if (row === 4 && col === 4) {
       setCenterCellClicks(prev => {
@@ -129,10 +211,17 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
     }
   }
 
-  const handleNumberInput = (num) => {
+  const handleNumberInput = async (num) => {
     if (!selectedCell) return
 
     const { row, col } = selectedCell
+
+    try {
+      // Vibración media al ingresar un número
+      await Haptics.impact({ style: 'medium' });
+    } catch (error) {
+      console.error('Error con la vibración:', error);
+    }
 
     if (isNotesMode) {
       // Handle notes mode
@@ -215,6 +304,9 @@ export default function GameBoard({ gameMode, gameDifficulty, onLoseLife, onGame
         showToast("¡Movimiento inválido!", "Has perdido una vida", "destructive")
       }
     }
+
+    // Guardar progreso después de cada movimiento
+    saveGameProgress();
   }
 
   const checkForCompletedSections = (board, row, col) => {

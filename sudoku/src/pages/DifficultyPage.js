@@ -75,10 +75,10 @@ export default function DifficultyPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleDifficultySelect("facil")}
-                  className={`p-4 rounded-lg border-2 transition-all ${
+                  className={`p-4 rounded-lg border-2 transition-all shadow-sm ${
                     selectedDifficulty === "facil"
-                      ? "border-primary bg-primary/10"
-                      : "border-border hover:border-primary/50"
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-blue-500/20 shadow-lg"
+                      : "border-border hover:border-blue-500/50"
                   }`}
                 >
                   <div className="font-bold text-lg">Fácil</div>
@@ -91,10 +91,10 @@ export default function DifficultyPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleDifficultySelect("medio")}
-                  className={`p-4 rounded-lg border-2 transition-all ${
+                  className={`p-4 rounded-lg border-2 transition-all shadow-sm ${
                     selectedDifficulty === "medio"
-                      ? "border-primary bg-primary/10"
-                      : "border-border hover:border-primary/50"
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-blue-500/20 shadow-lg"
+                      : "border-border hover:border-blue-500/50"
                   }`}
                 >
                   <div className="font-bold text-lg">Medio</div>
@@ -107,10 +107,10 @@ export default function DifficultyPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleDifficultySelect("dificil")}
-                  className={`p-4 rounded-lg border-2 transition-all ${
+                  className={`p-4 rounded-lg border-2 transition-all shadow-sm ${
                     selectedDifficulty === "dificil"
-                      ? "border-primary bg-primary/10"
-                      : "border-border hover:border-primary/50"
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-blue-500/20 shadow-lg"
+                      : "border-border hover:border-blue-500/50"
                   }`}
                 >
                   <div className="font-bold text-lg flex items-center gap-1">
@@ -124,13 +124,19 @@ export default function DifficultyPage() {
               </div>
             </div>
             <div className="flex items-center p-6 pt-0">
-              <button 
+              <motion.button 
                 onClick={handleStartGame} 
-                className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 w-full ${!selectedDifficulty ? 'opacity-50 pointer-events-none' : ''}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 h-12 px-8 w-full shadow-lg
+                  ${!selectedDifficulty 
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-blue-500/25'
+                  }`}
                 disabled={!selectedDifficulty}
               >
                 Comenzar Juego
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.div>
