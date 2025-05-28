@@ -1,8 +1,7 @@
-// Generador de Sudoku mejorado y optimizado
 
 // Generar un tablero de Sudoku resuelto
 function generateSolvedBoard() {
-  // Comenzar con un tablero base predefinido para evitar bucles infinitos
+  // Comenzar con un tablero base predefinido
   const baseBoard = [
     [5, 3, 4, 6, 7, 8, 9, 1, 2],
     [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -22,19 +21,24 @@ function generateSolvedBoard() {
 
 // Mezclar un tablero de Sudoku manteniendo la validez
 function shuffleBoard(board) {
+  // Crear una copia del tablero para evitar modificar el original
   let newBoard = board.map(row => [...row]);
   
   // Intercambiar filas dentro de los mismos grupos de 3
   for (let group = 0; group < 3; group++) {
+    // Obtener un arreglo con las filas que se intercambiarán ej: [0, 1, 2]
     const rows = [group * 3, group * 3 + 1, group * 3 + 2];
-    shuffleArray(rows);
+    // Mezclar las filas
+    shuffleArray(rows); //ej: [0, 1, 2] -> [1, 0, 2]
     
+    // Se copia el contenido original de las filas que se intercambiarán
     const tempRows = [
       [...newBoard[group * 3]],
       [...newBoard[group * 3 + 1]],
       [...newBoard[group * 3 + 2]]
     ];
-    
+
+    // Se intercambia el contenido de las filas en el nuevo tablero con el arreglo mezclado
     newBoard[group * 3] = tempRows[rows[0] - group * 3];
     newBoard[group * 3 + 1] = tempRows[rows[1] - group * 3];
     newBoard[group * 3 + 2] = tempRows[rows[2] - group * 3];
@@ -123,7 +127,7 @@ function shuffleArray(array) {
   }
 }
 
-// Generar un puzzle de Sudoku eliminando números de un tablero resuelto
+//* FUNCIOÓN PRINCIPAL PARA GENERAR SUDOKU
 export function generateSudoku(difficulty) {
   try {
     // Generar un tablero resuelto
