@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://pkgs.dev.azure.com/capacitor/capacitor/_packaging/capacitor/maven/v1' }
+    }
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+} 
