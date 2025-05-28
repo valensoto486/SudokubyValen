@@ -96,7 +96,7 @@ export default function HowToPlay() {
               <div className="flex justify-center py-4">
                 <div className="w-48 h-48 bg-muted rounded-lg flex items-center justify-center">
                   <img
-                    src="/placeholder.svg?height=150&width=150"
+                    src={steps[currentStep].image}
                     alt={steps[currentStep].title}
                     className="max-w-full max-h-full"
                   />
