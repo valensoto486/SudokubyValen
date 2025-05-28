@@ -1,12 +1,12 @@
-# 🎮 SudokubyValen
+# SudokubyValen
 
 Una aplicación moderna de Sudoku desarrollada con React y Capacitor, que ofrece una experiencia de juego híbrida tanto para web como para dispositivos móviles Android.
 
-## 📱 Características
+## Características
 
 - **Dos Modos de Juego**
-  - 🎯 Modo Clásico: Sudoku tradicional 9x9
-  - 🌟 Modo Experto: Regiones irregulares para mayor desafío
+  - Modo Clásico: Sudoku tradicional 9x9
+  - Modo Experto: Regiones irregulares para mayor desafío
 
 - **Niveles de Dificultad**
   - 😊 Fácil: Ideal para principiantes
@@ -21,7 +21,7 @@ Una aplicación moderna de Sudoku desarrollada con React y Capacitor, que ofrece
   - 📊 Estadísticas de juego
   - 🎯 Tutorial interactivo
 
-## 🚀 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Frontend**
   - React
@@ -33,7 +33,7 @@ Una aplicación moderna de Sudoku desarrollada con React y Capacitor, que ofrece
   - Capacitor para la versión Android
   - APIs nativas (Haptics, Storage)
 
-## 📥 Instalación
+## Instalación
 
 1. Clona el repositorio:
 \`\`\`bash
@@ -51,7 +51,7 @@ npm install
 npm start
 \`\`\`
 
-## 📱 Compilación para Android
+## Compilación para Android
 
 1. Construye la aplicación:
 \`\`\`bash
@@ -68,7 +68,7 @@ npx cap sync android
 npx cap open android
 \`\`\`
 
-## 🎮 Cómo Jugar
+## Cómo Jugar
 
 1. **Objetivo**: Completa la cuadrícula 9x9 con números del 1 al 9
 2. **Reglas**:
@@ -78,26 +78,8 @@ npx cap open android
 3. **Vidas**: Tienes 4 vidas por partida
 4. **Notas**: Mantén presionada una celda para activar el modo de notas
 
-## 🤝 Contribuir
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Haz Fork del proyecto
-2. Crea una rama para tu característica (\`git checkout -b feature/AmazingFeature\`)
-3. Commit tus cambios (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push a la rama (\`git push origin feature/AmazingFeature\`)
-5. Abre un Pull Request
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
-
-## 👤 Autor
+## Autor
 
 - **Valentina** - *Desarrollo Inicial* - [GitHub](https://github.com/yourusername)
 
-## 🙏 Agradecimientos
-
-- Inspirado en el clásico juego de Sudoku
-- Gracias a la comunidad de React y Capacitor
-- Todos los contribuidores y probadores
