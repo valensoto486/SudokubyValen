@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SudokubyValen</string>
+    <string name="title_activity_main">SudokubyValen</string>
+    <string name="package_name">com.valen.sudoku</string>
+    <string name="custom_url_scheme">com.valen.sudoku</string>
+</resources>
